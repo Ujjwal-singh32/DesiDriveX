@@ -1,24 +1,16 @@
-import React, { useState ,useContext} from "react";
+import React, { useState, useContext } from "react";
 import Footer from "../components/Footer";
 import { AdminContext } from "../context/AdminContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 const TotalOwner = () => {
-  const {
-    token,
-    setToken,
-    backendUrl,
-    loading,
-    error,
-    owners,
-    setOwners,
-    totalOwners,
-    setTotalOwners,
-  } = useContext(AdminContext);
+  const { backendUrl, owners, totalOwners, setTotalOwners } = useContext(
+    AdminContext
+  );
 
-  const handleDelete = async(ownerId) => {
+  const handleDelete = async (ownerId) => {
     try {
-      // Confirm deletion with the user
+      // Confirm deletion with the admin
       const isConfirmed = window.confirm(
         "Are you sure you want to delete the owner?"
       );
@@ -69,10 +61,10 @@ const TotalOwner = () => {
                     <span
                       className={`py-1 px-3 rounded-full text-white text-sm ${
                         owner.status === "Active"
-                        ? "bg-yellow-500"
-                        : owner.status === "Inactive"
-                        ? "bg-red-500"
-                        :"bg-green-500"
+                          ? "bg-yellow-500"
+                          : owner.status === "Inactive"
+                          ? "bg-red-500"
+                          : "bg-green-500"
                       }`}
                     >
                       {owner.status || "Active"}

@@ -68,89 +68,8 @@ const getMessages = async (req, res) => {
   }
 };
 
-// const getTotalWorkers = async (req, res) => {
-//   const { userId } = req.params;
-
-//   if (!userId) {
-//     return res
-//       .status(400)
-//       .json({ success: false, error: "User ID is required." });
-//   }
-
-//   try {
-//     const chats = await chatmodel.find({
-//       $or: [{ senderId: userId }, { receiverId: userId }],
-//     });
-
-//     if (!chats || chats.length === 0) {
-//       return res
-//         .status(404)
-//         .json({ success: false, error: "No workers found for this user." });
-//     }
-//     const workerIds = new Set();
-
-//     // if in chat if the user is sender then the reciever is the worker and vice versa
-
-//     chats.forEach((chat) => {
-//       if (chat.senderId !== userId) {
-//         workerIds.add(chat.senderId); // The sender is a worker
-//       }
-//       if (chat.receiverId !== userId) {
-//         workerIds.add(chat.receiverId); // The receiver is a worker
-//       }
-//     });
-
-//     // send the array
-//     res.status(200).json({ success: true, workers: Array.from(workerIds) });
-//   } catch (error) {
-//     console.error("Error in getting Total Workers:", error);
-//     res.status(500).json({ success: false, error: "Internal server error" });
-//   }
-// };
-
-// const getTotalUsers = async (req, res) => {
-//     const { workerId } = req.params;
-
-//     if (!workerId) {
-//       return res
-//         .status(400)
-//         .json({ success: false, error: "Worker ID is required." });
-//     }
-
-//     try {
-//       const chats = await chatmodel.find({
-//         $or: [{ senderId: workerId }, { receiverId: workerId }],
-//       });
-//       if (!chats || chats.length === 0) {
-//         return res
-//           .status(404)
-//           .json({ success: false, error: "No users found for this worker." });
-//       }
-
-//       const userIds = new Set();
-
-//       chats.forEach((chat) => {
-//         if (chat.senderId !== workerId) {
-//           userIds.add(chat.senderId); // The sender is a user
-//         }
-//         if (chat.receiverId !== workerId) {
-//           userIds.add(chat.receiverId); // The receiver is a user
-//         }
-//       });
-
-//     // convert to array before sending the request
-//       res.status(200).json({ success: true, users: Array.from(userIds) });
-//     } catch (error) {
-//       console.error("Error in get Total Users:", error);
-//       res.status(500).json({ success: false, error: "Internal server error" });
-//     }
-// };
 
 export {
   sendMessage,
   getMessages,
-  //   userDetails,
-  //   workerDetails,
-  //   getTotalWorkers,
-  //   getTotalUsers,
 };

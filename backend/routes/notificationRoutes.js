@@ -4,7 +4,7 @@ import {
   getNotification,
   updateNotification,
 } from "../controllers/notificationController.js";
-import { get } from "mongoose";
+
 const notificationRouter = express.Router();
 
 notificationRouter.post("/new-notification", sendNotification);

@@ -1,8 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-
 export const AdminContext = createContext();
 export const useAdmin = () => {
   return useContext(AdminContext);
@@ -15,10 +12,10 @@ const AdminContextProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalCars, setTotalCars] = useState(0);
-  const [users, setUsers] = useState([])
-  const [totalUsers, setTotalUsers] = useState(0)
-  const [owners, setOwners] = useState([])
-  const [totalOwners, setTotalOwners] = useState(0)
+  const [users, setUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [owners, setOwners] = useState([]);
+  const [totalOwners, setTotalOwners] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0);
   // Fetch token from localStorage
@@ -36,8 +33,8 @@ const AdminContextProvider = (props) => {
         const response = await axios.get(
           `${backendUrl}/api/cars/total-cars-model`
         );
-        setCars(response.data.cars); 
-        setTotalCars(response.data.cars.length)
+        setCars(response.data.cars);
+        setTotalCars(response.data.cars.length);
         setLoading(false);
       } catch (err) {
         setError("Error fetching car details.");
@@ -50,18 +47,15 @@ const AdminContextProvider = (props) => {
     }
     const interval = setInterval(fetchCars, 2000);
     return () => clearInterval(interval);
-
   }, [token, backendUrl]);
 
   // fetch total users
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(
-          `${backendUrl}/api/admin/total-users`
-        );
-        setUsers(response.data.users); 
-        setTotalUsers(response.data.users.length)
+        const response = await axios.get(`${backendUrl}/api/admin/total-users`);
+        setUsers(response.data.users);
+        setTotalUsers(response.data.users.length);
         setLoading(false);
       } catch (err) {
         setError("Error fetching user details.");
@@ -70,7 +64,7 @@ const AdminContextProvider = (props) => {
     };
 
     if (token) {
-        fetchUsers();
+      fetchUsers();
     }
     const interval = setInterval(fetchUsers, 2000);
     return () => clearInterval(interval);
@@ -83,8 +77,8 @@ const AdminContextProvider = (props) => {
         const response = await axios.get(
           `${backendUrl}/api/admin/total-owners`
         );
-        setOwners(response.data.owners); 
-        setTotalOwners(response.data.owners.length)
+        setOwners(response.data.owners);
+        setTotalOwners(response.data.owners.length);
         setLoading(false);
       } catch (err) {
         setError("Error fetching owner details.");
@@ -93,11 +87,10 @@ const AdminContextProvider = (props) => {
     };
 
     if (token) {
-        fetchOwners();
-        const interval = setInterval(fetchOwners, 2000);
-    return () => clearInterval(interval);
+      fetchOwners();
+      const interval = setInterval(fetchOwners, 2000);
+      return () => clearInterval(interval);
     }
-
   }, [token, backendUrl]);
 
   useEffect(() => {
@@ -106,14 +99,14 @@ const AdminContextProvider = (props) => {
         const response = await axios.get(
           `${backendUrl}/api/admin/contact-us-get`
         );
-        console.log(response.data[0].message)
+        console.log(response.data[0].message);
         setNotifications(response.data);
 
         // Count unread notifications
         const unreadCount = response.data.filter(
           (notif) => notif.hasRead === false
         ).length;
-      
+
         setUnreadNotificationsCount(unreadCount);
       } catch (err) {
         setError("Error fetching notifications.");
@@ -127,8 +120,8 @@ const AdminContextProvider = (props) => {
     }
   }, [token, backendUrl]);
 
-// console.log(users)
-// console.log(owners)
+  // console.log(users)
+  // console.log(owners)
   const value = {
     token,
     setToken,
@@ -149,7 +142,7 @@ const AdminContextProvider = (props) => {
     notifications,
     setNotifications,
     unreadNotificationsCount,
-    setUnreadNotificationsCount
+    setUnreadNotificationsCount,
   };
 
   return (

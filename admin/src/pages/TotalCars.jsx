@@ -5,8 +5,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const TotalCars = () => {
   const {
-    token,
-    setToken,
     backendUrl,
     totalCars,
     setTotalCars,

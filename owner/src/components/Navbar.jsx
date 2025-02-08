@@ -1,4 +1,4 @@
-import React, { useState,useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/carassets/logo.png";
 import { assets } from "../assets/frontend_assets/assets";
@@ -6,7 +6,7 @@ import notification from "../assets/logos_kaarya/notification.png";
 import { Link, useNavigate } from "react-router-dom"; // Import Link component
 import { OwnerContext } from "../context/OwnerContext";
 const Navbar = () => {
-  const { token, setToken, backendUrl ,unreadCount} = useContext(OwnerContext);
+  const { setToken, unreadCount } = useContext(OwnerContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const navigate = useNavigate();
@@ -76,7 +76,7 @@ const Navbar = () => {
               onClick={notify}
             />
             <span className="absolute top-0 right-0 bg-pink-500 text-white rounded-full text-xs px-1">
-             {unreadCount}
+              {unreadCount}
             </span>
           </div>
 

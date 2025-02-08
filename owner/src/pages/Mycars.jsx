@@ -20,7 +20,6 @@ const ManageCars = () => {
         return;
       }
       try {
-        // Replace with the actual backend URL
         console.log(ownerId);
         const response = await axios.get(
           `${backendUrl}/api/cars/total-cars/${ownerId}`
@@ -76,7 +75,7 @@ const ManageCars = () => {
   }
   const handleDelete = async (carId) => {
     try {
-      // Confirm deletion with the user
+      // Confirm deletion with the owner
       const isConfirmed = window.confirm(
         "Are you sure you want to delete this car?"
       );

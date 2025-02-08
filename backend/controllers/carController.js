@@ -1,11 +1,9 @@
 import express from "express";
 import validator from "validator";
 import carModel from "../models/carModel.js";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { v2 as cloudinary } from "cloudinary";
 import bookingModel from "../models/bookingModel.js";
-import chatModel from "../models/chatModel.js";
 import mongoose from "mongoose";
 // token creation
 

@@ -10,8 +10,9 @@ import mongoose from "mongoose";
 import bookingModel from "../models/bookingModel.js";
 import notificationModel from "../models/notificationModel.js";
 import chatModel from "../models/chatModel.js";
+
 const admin_login = async (req, res) => {
-  // we reuire admin feature beacuse anyone can add or remove products from the app
+  // we require admin feature beacuse anyone can add or remove products from the app
   // so we provide admin featire to some person so that they can only change the products present on the app
   // so check for the validation
   try {
@@ -23,7 +24,7 @@ const admin_login = async (req, res) => {
 
     if (email === original_email && password === original_password) {
       // send a token
-      const token = jwt.sign(email + password, process.env.JWT_SECRET); // here when we verify the token we will require the email+password as matched correctly
+      const token = jwt.sign(email + password, process.env.JWT_SECRET); // here when we generate the token we will require the email+password as matched correctly
       res.json({ success: true, token: token });
     } else {
       res.json({ success: false, message: "Invalid Email Or Password" });
@@ -341,7 +342,6 @@ const updateContactUsMessage = async (req, res) => {
       { new: true }
     );
 
-    // Log the result of the update to check if it returned anything
     //console.log("Updated message:", updatedMessage);
 
     if (!updatedMessage) {

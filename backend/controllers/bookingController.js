@@ -1,6 +1,6 @@
 import bookingModel from "../models/bookingModel.js";
 import mongoose from "mongoose";
-// this api is for creating, deleting , updating , and getting all the bookings that belongs to a particular user or worker
+// this api is for creating, deleting , updating , and getting all the bookings that belongs to a particular user or owner
 
 const createBooking = async (req, res) => {
   const {
@@ -68,7 +68,7 @@ const updateBookingStatus = async (req, res) => {
 };
 
 // get all bookings of the logged in user
-// populate is used so that we can find the details directly from the worker id
+// populate is used so that we can find the details directly from the owner id
 
 const getUserBookings = async (req, res) => {
   const { userId } = req.params;

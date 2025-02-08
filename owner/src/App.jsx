@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import Mycars from './pages/Mycars';
 import Login from './pages/Login';
 import Notification from './pages/Notification';
-import ManageCars from './pages/ManageCars';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Upcoming from './pages/Upcoming';
@@ -25,7 +24,6 @@ const App = () => {
       <Route path='/' element={<Mycars/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/notification' element={<Notification/>}/>
-      <Route path='/manage/:id' element={<ManageCars/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/upcoming' element={<Upcoming/>}/>

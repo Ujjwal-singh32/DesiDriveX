@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const bookingSchema = new mongoose.Schema({
   ownerId: {
     type: Schema.Types.ObjectId,
-    ref: "Owner",
+    ref: "Owner", // referencing the owner model so that we can populate
     required: true,
   },
   userId: {

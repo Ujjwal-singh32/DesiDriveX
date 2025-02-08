@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import axios from "axios"; // Make sure to install axios
+import axios from "axios";
 import { toast } from "react-toastify";
 const Requests = () => {
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-  // Ensure `requests` is always an array, set initial state to an empty array
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -119,11 +118,11 @@ const Requests = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading message while fetching data
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div className="text-center">No Request</div>; // Show error message if API call fails
+    return <div className="text-center">No Request</div>;
   }
 
   return (

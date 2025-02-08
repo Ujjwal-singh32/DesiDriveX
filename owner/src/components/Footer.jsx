@@ -1,5 +1,4 @@
 import React from "react";
-import { assets } from "../assets/frontend_assets/assets";
 import logo from "../assets/carassets/logo.png"
 import { NavLink } from "react-router-dom";
 const Footer = () => {
@@ -39,7 +38,7 @@ const Footer = () => {
         <div>
           <p className="text-xl font-medium mb-5"> REACH US</p>
           <ul className="flex flex-col gap-1 text-black">
-            <li>+91-9341658002</li>
+            <li>+91-9341658004</li>
             <li>ujjwalchauhan654@gmail.com</li>
           </ul>
         </div>

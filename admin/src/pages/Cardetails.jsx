@@ -7,9 +7,7 @@ const CarDetails = () => {
   const [car, setCar] = useState(null); // Initial state is null to handle loading state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
   const { carId } = useParams();
   const navigate = useNavigate();
   // Fetch car details
@@ -36,11 +34,11 @@ const CarDetails = () => {
   }, [carId]);
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading message while fetching data
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>; // Show error message if the API call fails
+    return <div>{error}</div>;
   }
 
   if (!car) {

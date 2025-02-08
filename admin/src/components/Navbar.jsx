@@ -1,14 +1,11 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/carassets/logo.png";
 import { assets } from "../assets/frontend_assets/assets";
-import notification from "../assets/logos_kaarya/notification.png";
-import { Link, useNavigate } from "react-router-dom"; // Import Link component
+import { Link, useNavigate } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
 const Navbar = () => {
-   const {
-      unreadNotificationsCount,
-    } = useContext(AdminContext);
+  const { unreadNotificationsCount } = useContext(AdminContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const navigate = useNavigate();
@@ -68,7 +65,7 @@ const Navbar = () => {
               src="https://i.pinimg.com/736x/75/08/56/750856f6cef954e4690bb23cfdf10ff1.jpg"
               alt="Notifications"
               className="w-9 h-9 cursor-pointer"
-             onClick={()=>navigate("/notification")}
+              onClick={() => navigate("/notification")}
             />
             <span className="absolute top-0 right-0 bg-pink-500 text-white rounded-full text-xs px-1">
               {unreadNotificationsCount}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/carassets/logo.png";
 import Footer from "../components/Footer";
 import { OwnerContext } from "../context/OwnerContext";
 import axios from 'axios'

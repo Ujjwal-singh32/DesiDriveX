@@ -1,6 +1,5 @@
 import React from "react";
-import { assets } from "../assets/frontend_assets/assets";
-import logo from "../assets/carassets/logo.png"
+import logo from "../assets/carassets/logo.png";
 import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
@@ -10,8 +9,8 @@ const Footer = () => {
           <img src={logo} className="mb-5 w-32 ml-8" alt=""></img>
           <p className="w-full md:w-2/3 text-black ml-5">
             {" "}
-            This is a Car Lending App where user can Lend any Car for
-            their work and Owner can earn money through this....
+            This is a Car Lending App where user can Lend any Car for their work
+            and Owner can earn money through this....
           </p>
         </div>
 

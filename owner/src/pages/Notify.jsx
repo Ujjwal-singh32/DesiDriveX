@@ -5,12 +5,12 @@ import { OwnerContext } from "../context/OwnerContext";
 
 const Notify = () => {
   const { backendUrl, ownerId } = useContext(OwnerContext);
-  const [username, setUsername] = useState(""); // Display the owner's name
+  const [username, setUsername] = useState("");
   const [userId, setUserId] = useState("");
   const { bookingId } = useParams();
-  const [ownerMessages, setOwnerMessages] = useState([]); // Messages from the owner (left side)
-  const [userMessages, setUserMessages] = useState([]); // Messages from the user (right side)
-  const [newMessage, setNewMessage] = useState(""); // State to store the new message
+  const [ownerMessages, setOwnerMessages] = useState([]);
+  const [userMessages, setUserMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

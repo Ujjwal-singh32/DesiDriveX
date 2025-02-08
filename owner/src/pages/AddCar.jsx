@@ -5,17 +5,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const AddCar = () => {
   const navigate = useNavigate();
-  const {
-    backendUrl,
-    ownerId,
-    setOwnerId,
-    ownerName,
-    setOwnerName,
-    ownerPhoneNumber,
-    setOwnerPhoneNumber,
-  } = useContext(OwnerContext);
-  console.log("owner", ownerName);
-  console.log("ownerphoen", ownerPhoneNumber);
+  const { backendUrl, ownerId, ownerName, ownerPhoneNumber } = useContext(
+    OwnerContext
+  );
+  // console.log("owner", ownerName);
+  // console.log("ownerphoen", ownerPhoneNumber);
   const [carDetails, setCarDetails] = useState({
     name: "",
     model: "",
@@ -59,7 +53,7 @@ const AddCar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("cardetails",carDetails);
+    console.log("cardetails", carDetails);
     try {
       const formData = new FormData();
       formData.append("name", carDetails.name);
@@ -78,7 +72,7 @@ const AddCar = () => {
         if (image) {
           formData.append(`image${index + 1}`, image);
         }
-       // console.log(image);
+        // console.log(image);
       });
 
       const res = await axios.post(`${backendUrl}/api/cars/register`, formData);
@@ -97,7 +91,7 @@ const AddCar = () => {
           fuelType: "",
           images: Array(6).fill(null),
         });
-        navigate("/upcoming")
+        navigate("/upcoming");
       } else {
         toast.error("Failed to submit car details.");
       }

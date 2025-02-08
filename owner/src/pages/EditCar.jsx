@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import profile_back from "../assets/carassets/profile_back.avif";
-import profile_back1 from "../assets/carassets/profile_back1.avif";
-import logo from "../assets/carassets/logo.png";
-import { useParams,useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { OwnerContext } from "../context/OwnerContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 const EditCar = () => {
   const navigate = useNavigate();
-  // State for car details
-  const { token, backendUrl, ownerId } = useContext(OwnerContext);
+
+  const { backendUrl } = useContext(OwnerContext);
   const { carId } = useParams();
- // console.log("car Id", carId);
+  // console.log("car Id", carId);
   const [carDetails, setCarDetails] = useState({});
   const [error, setError] = useState(null);
 
@@ -21,7 +18,7 @@ const EditCar = () => {
         const response = await axios.get(
           `${backendUrl}/api/cars/details/${carId}`
         );
-     //   console.log("car", response.data.cardata[0]);
+        //   console.log("car", response.data.cardata[0]);
         if (response.data.success) {
           //  console.log(response.data.cardata[0]);
           setCarDetails(response.data.cardata[0]);
@@ -68,7 +65,7 @@ const EditCar = () => {
         if (image) {
           formData.append(`image${index + 1}`, image);
         }
-       // console.log(image)
+        // console.log(image)
       });
 
       // Send the request
@@ -82,7 +79,7 @@ const EditCar = () => {
 
       if (response.data.success) {
         toast.success("Car details updated successfully!");
-        navigate("/")
+        navigate("/");
       } else {
         toast.error("Failed to update car details.");
       }

@@ -4,7 +4,8 @@ import upload from "../middleware/multer.js";
 
 const ownerRouter = express.Router();
 
-// api endpoints for the user
+// api endpoints for the owner routes
+
 ownerRouter.post("/register", upload.single("profilePic"), registerOwner);
 ownerRouter.post("/login" , loginOwner)
 ownerRouter.get("/details" ,authenticateToken, ownerDetails)

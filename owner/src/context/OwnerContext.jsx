@@ -1,8 +1,6 @@
 import { createContext, useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 export const OwnerContext = createContext();
 export const useOwner = () => {
@@ -74,7 +72,7 @@ const OwnerContextProvider = (props) => {
           );
           if (response.data.success) {
             setNotifications(response.data.data);
-            // Count unread notifications (Assuming status: "Sent" means unread)
+            // Count unread notifications
             const unread = response.data.data.filter(
               (notif) => notif.status === "unread"
             ).length;

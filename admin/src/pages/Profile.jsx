@@ -1,13 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import logo from "../assets/carassets/logo.png";
 import Footer from "../components/Footer";
 const Profile = () => {
-  const navigate = useNavigate();
-
-  // Dummy data for the user
   const userData = {
-    profilePic: logo, // Replace with actual placeholder or default URL
+    profilePic: logo,
     name: "Ujjwal...",
     details: {
       Email: "admin@desidrivex.com",
@@ -16,10 +12,6 @@ const Profile = () => {
       State: "Bihar",
     },
   };
-
-  // const handleEditProfile = () => {
-  //   navigate("/edit-profile"); // Navigate to the edit profile page
-  // };
 
   return (
     <>
@@ -31,12 +23,6 @@ const Profile = () => {
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
             />
-            {/* <button
-              onClick={handleEditProfile}
-              className="mt-20 text-pink-500 border border-purple-500 rounded-md px-2"
-            >
-              Edit
-            </button> */}
           </div>
           <h1 className="text-3xl font-semibold text-gray-800">
             {`${userData.name}...` || "Loading..."}
@@ -52,10 +38,12 @@ const Profile = () => {
                 <strong>Email:</strong> {userData.details.Email || "Loading..."}
               </p>
               <p>
-                <strong>Phone:</strong> {userData.details.PhoneNumber || "Loading..."}
+                <strong>Phone:</strong>{" "}
+                {userData.details.PhoneNumber || "Loading..."}
               </p>
               <p>
-                <strong>Pin Code:</strong> {userData.details.PinCode || "Loading..."}
+                <strong>Pin Code:</strong>{" "}
+                {userData.details.PinCode || "Loading..."}
               </p>
               <p>
                 <strong>State:</strong> {userData.details.State || "Loading..."}

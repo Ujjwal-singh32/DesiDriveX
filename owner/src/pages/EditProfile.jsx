@@ -6,7 +6,7 @@ import { OwnerContext } from "../context/OwnerContext";
 const EditProfile = () => {
   const navigate = useNavigate();
   const { token, setToken, backendUrl } = useContext(OwnerContext);
-  // Initial state to hold user data
+  // Initial state to hold owner data
   const [ownerData, setOwnerData] = useState({
     name: "",
     pinCode: "",
@@ -86,20 +86,20 @@ const EditProfile = () => {
 
   // Handle input field changes
   const handleChange = (e) => {
-        const { name, value } = e.target;
-        setOwnerData((prevData) => {
-          const newData = { ...prevData, [name]: value };
-          //console.log('Updated ownerData:', newData);
-          return newData;
-        });
+    const { name, value } = e.target;
+    setOwnerData((prevData) => {
+      const newData = { ...prevData, [name]: value };
+      //console.log('Updated ownerData:', newData);
+      return newData;
+    });
   };
 
   // Handle profile picture selection
   const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          setProfilePic(file); // Set the selected file
-        }
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePic(file); // Set the selected file
+    }
   };
 
   return (
