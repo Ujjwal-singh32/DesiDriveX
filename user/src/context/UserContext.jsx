@@ -1,8 +1,6 @@
 import { createContext, useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -44,7 +42,7 @@ const UserContextProvider = (props) => {
             setUserId(fetchedUserId);
             setUsername(response.data.user.name);
             localStorage.setItem("userId", fetchedUserId);
-            console.log("user Id", userId);
+            // console.log("user Id", userId);
           } else {
             console.error("Failed to fetch user data");
           }
@@ -64,7 +62,7 @@ const UserContextProvider = (props) => {
           );
           if (response.data.success) {
             setNotifications(response.data.data);
-            // Count unread notifications (Assuming status: "Sent" means unread)
+            // Count unread notifications
             const unread = response.data.data.filter(
               (notif) => notif.status === "unread"
             ).length;
@@ -79,7 +77,7 @@ const UserContextProvider = (props) => {
 
       fetchNotifications();
       const interval = setInterval(fetchNotifications, 3000);
-  return () => clearInterval(interval);
+      return () => clearInterval(interval);
     }
   }, [userId, backendUrl]);
   const value = {

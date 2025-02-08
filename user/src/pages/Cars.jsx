@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // import axios to make API calls
+import axios from "axios"; 
 import { UserContext } from "../context/UserContext";
 const Cars = () => {
   const { token, setToken, backendUrl } = useContext(UserContext);
@@ -22,13 +22,13 @@ const Cars = () => {
   );
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [loading, setLoading] = useState(true); // Loading state to handle loading status
-  const [error, setError] = useState(null); // Error state to handle any errors during fetching
+  const [error, setError] = useState(null);
 
   // Fetch car data from the database when the component mounts
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        // Replace the URL with the actual backend URL
+
         const response = await axios.get(
           `${backendUrl}/api/cars/total-cars-model`
         );
@@ -176,17 +176,18 @@ const Cars = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer">
         {filteredCars.map((car) => (
           <div
-            key={car._id} // Change to _id if the backend returns MongoDB's _id
+            key={car._id} 
             className="bg-white shadow-lg rounded-lg overflow-hidden"
-            onClick={() => navigate(`/car-details/${car._id}`)} // Use car._id for navigation
+            onClick={() => navigate(`/car-details/${car._id}`)} 
           >
             <img
-              src={car.images[0]} // Assuming images is an array in the car object
+              src={car.images[0]} 
               alt={car.name}
               className="w-full h-64 object-cover"
             />
             <div className="p-4">
               <h2 className="text-xl font-semibold">{car.name}</h2>
+              {/* i am using random rating as of now but i will change later whenever i make the rating feature */}
               <p className="text-sm text-gray-500">
                 Rating: {car.rating || Math.ceil(5 * Math.random())}⭐
               </p>

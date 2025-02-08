@@ -3,23 +3,30 @@ import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
 const Notification = () => {
-  const { notifications, unreadCount, backendUrl,setNotifications,setUnreadCount } = useContext(UserContext);
+  const {
+    notifications,
+    unreadCount,
+    backendUrl,
+    setNotifications,
+    setUnreadCount,
+  } = useContext(UserContext);
 
   const markAsRead = async (id) => {
     try {
-      await axios.put(`${backendUrl}/api/notification/update-notification/${id}`, {
-      });
+      await axios.put(
+        `${backendUrl}/api/notification/update-notification/${id}`,
+        {}
+      );
 
-      // Optional: Optimistically update UI
       const updatedNotifications = notifications.map((notification) =>
         notification._id === id
           ? { ...notification, status: "read" }
           : notification
       );
 
-      // Update state in context if needed
-       setNotifications(updatedNotifications);
-       setUnreadCount(unreadCount-1);
+      // updating the context
+      setNotifications(updatedNotifications);
+      setUnreadCount(unreadCount - 1);
     } catch (error) {
       console.error("Error marking notification as read:", error);
     }

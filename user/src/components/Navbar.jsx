@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/carassets/logo.png";
 import { assets } from "../assets/frontend_assets/assets";
 import notification from "../assets/logos_kaarya/notification.png";
-import { Link, useNavigate } from "react-router-dom"; // Import Link component
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 const Navbar = () => {
   const { token, setToken, backendUrl,unreadCount } = useContext(UserContext);

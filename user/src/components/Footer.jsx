@@ -1,5 +1,4 @@
 import React from "react";
-import { assets } from "../assets/frontend_assets/assets";
 import logo from "../assets/carassets/logo.png"
 import { NavLink } from "react-router-dom";
 const Footer = () => {

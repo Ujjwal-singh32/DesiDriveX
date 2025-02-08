@@ -3,9 +3,9 @@ import Footer from "../components/Footer";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useParams, useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 const Bookings = () => {
-  const { token, setToken, backendUrl } = useContext(UserContext);
+  const { backendUrl } = useContext(UserContext);
   const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,8 +15,11 @@ const Bookings = () => {
         const bookingsResponse = await axios.get(
           `${backendUrl}/api/bookings/user-bookings/${userId}`
         );
-        console.log(bookingsResponse); // Check API response
-        const bookingsData = bookingsResponse.data.bookings; // Extract bookings array
+        console.log(bookingsResponse);
+        const bookingsData = bookingsResponse.data.bookings;
+
+        //  we are using promise.all for the parallel execution of the code and if we use for each for in loop
+        // the it will also work but next call have to wait untill the first one finishes the first call
 
         const updatedBookings = await Promise.all(
           bookingsData.map(async (booking) => {
@@ -183,8 +186,10 @@ const Bookings = () => {
                         Complete
                       </button>
                     )}
-                    <button className="px-4 py-2 bg-pink-500 text-white text-sm rounded-lg hover:bg-purple-700 focus:outline-none"
-                    onClick={()=>navigate(`/notify/${booking._id}`)}>
+                    <button
+                      className="px-4 py-2 bg-pink-500 text-white text-sm rounded-lg hover:bg-purple-700 focus:outline-none"
+                      onClick={() => navigate(`/notify/${booking._id}`)}
+                    >
                       Notify
                     </button>
                   </div>

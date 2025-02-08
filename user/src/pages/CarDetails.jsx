@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // For getting the URL params and navigation
+import { useParams, useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
@@ -8,19 +8,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { UserContext } from "../context/UserContext";
 const CarDetails = () => {
-  const { carId } = useParams(); // Get the car ID from the URL
-  const navigate = useNavigate(); // For programmatic navigation
+  const { carId } = useParams();
+  const navigate = useNavigate();
   const { token, backendUrl, userId } = useContext(UserContext);
-  const [car, setCar] = useState(null); // State to hold car details
+  const [car, setCar] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [totalDistance, setTotalDistance] = useState(0); // In kilometers
-  const [startLocation, setStartLocation] = useState(null); // Allow dynamic start location
+  const [totalDistance, setTotalDistance] = useState(0);
+  const [startLocation, setStartLocation] = useState(null);
   const [endLocation, setEndLocation] = useState(null);
-  const [loading, setLoading] = useState(true); // Loading state for fetching car details
-  const [error, setError] = useState(null); // Error state for API call
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Custom Arrow Components
+  // Custom Arrow for seeing the car image
   const CustomPrevArrow = ({ onClick }) => (
     <div
       onClick={onClick}
@@ -42,7 +42,7 @@ const CarDetails = () => {
   // Slider Settings
   const sliderSettings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -68,7 +68,7 @@ const CarDetails = () => {
     };
 
     fetchCarDetails();
-  }, [carId]);
+  }, []);
 
   // Function to calculate the total price
   const calculateTotalPrice = () => {
@@ -78,7 +78,7 @@ const CarDetails = () => {
       return (
         diffInDays * car.pricePerDay +
         totalDistance * Math.ceil(car.pricePerDay / 0.8765)
-      ); // Calculate total price
+      );
     }
     return 100;
   };
@@ -88,7 +88,7 @@ const CarDetails = () => {
     // Redirect to the payment page
     navigate(`/payment/${car._id}`, {
       state: {
-        car, // Passing car details
+        car, // Passing car details as well the details required in booking model
         startDate,
         endDate,
         totalDistance,
@@ -121,7 +121,6 @@ const CarDetails = () => {
     }
   }, [startLocation, endLocation]);
 
-  // Show loading spinner or error message if necessary
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -151,10 +150,11 @@ const CarDetails = () => {
           <h1 className="text-3xl font-bold text-gray-800">{car.name}</h1>
           <p className="text-gray-600 mt-4">{car.description}</p>
           <p className="text-lg text-gray-800 mt-4">
-            <strong>Type:</strong> {car.type} 
+            <strong>Type:</strong> {car.type}
           </p>
           <p className="text-lg text-gray-800">
-            <strong>Rating:</strong> {car.rating || Math.ceil(Math.random() * 5)} ⭐ 
+            <strong>Rating:</strong>{" "}
+            {car.rating || Math.ceil(Math.random() * 5)} ⭐
           </p>
           <p className="text-lg text-gray-800">
             <strong>Price Per Day:</strong> ${car.pricePerDay}
@@ -241,7 +241,7 @@ const CarDetails = () => {
           <LoadScript googleMapsApiKey="AIzaSyDLk7Tp176K5My0x1kfF3xROZrSfkv7af0">
             <GoogleMap
               mapContainerClassName="h-64 w-full rounded-lg"
-              center={startLocation || { lat: 37.7749, lng: -122.4194 }} // Default location
+              center={startLocation || { lat: 22.7733, lng: 86.1439 }} // Default location
               zoom={10}
               onClick={(e) => {
                 if (!startLocation) {

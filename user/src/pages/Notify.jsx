@@ -5,19 +5,20 @@ import { UserContext } from "../context/UserContext";
 
 const Notify = () => {
   const { backendUrl, userId } = useContext(UserContext);
-  const ownerName = "John Doe"; // Update this with the actual owner name if available
   const [ownerId, setOwnerId] = useState("");
   const { bookingId } = useParams();
   const [ownerMessages, setOwnerMessages] = useState([]); // Messages from the owner (left side)
   const [userMessages, setUserMessages] = useState([]); // Messages from the user (right side)
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const [ownername, setOwnername] = useState("")
+  const [ownername, setOwnername] = useState("");
 
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const response = await axios.get(`${backendUrl}/api/bookings/${bookingId}`);
+        const response = await axios.get(
+          `${backendUrl}/api/bookings/${bookingId}`
+        );
         const booking = response.data.bookings;
         setOwnerId(booking.ownerId);
         const carResponse = await axios.get(
@@ -26,7 +27,7 @@ const Notify = () => {
         const carData = carResponse.data.cardata[0];
         //console.log("carId" ,booking.carId )
         //console.log("cardata" , carData[0].ownerName)
-        
+
         setOwnername(carData.ownerName);
         setLoading(false);
       } catch (error) {
@@ -73,16 +74,14 @@ const Notify = () => {
 
   // Function to fetch chat messages from the user (sender)
   const fetchUserMessages = async () => {
-    
     try {
       const response = await axios.get(
         `${backendUrl}/api/chats/messages/${bookingId}/${userId}/${ownerId}`
       );
       if (response.data.messages) {
-        // Add senderId to the user's messages
         const messagesWithSenderId = response.data.messages.map((msg) => ({
           ...msg,
-          senderId: userId, // This is the user sending the message
+          senderId: userId, //  user sending the message
         }));
         setUserMessages(messagesWithSenderId);
       }
@@ -117,6 +116,8 @@ const Notify = () => {
     }
   };
 
+  // when enter is clicked then send the message
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       sendMessage();
@@ -149,8 +150,19 @@ const Notify = () => {
               // Determine which side the message should be on
               const isOwnerMessage = msg.senderId === ownerId;
               return (
-                <div key={index} className={`flex ${isOwnerMessage ? 'justify-start' : 'justify-end'}`}>
-                  <div className={`p-3 my-1 rounded-lg ${isOwnerMessage ? 'bg-pink-400 text-white' : 'bg-purple-300'}`}>
+                <div
+                  key={index}
+                  className={`flex ${
+                    isOwnerMessage ? "justify-start" : "justify-end"
+                  }`}
+                >
+                  <div
+                    className={`p-3 my-1 rounded-lg ${
+                      isOwnerMessage
+                        ? "bg-pink-400 text-white"
+                        : "bg-purple-300"
+                    }`}
+                  >
                     {msg.text}
                     <div className="text-xs text-gray-500 mt-1">
                       {formatTimestamp(msg.timestamp)}

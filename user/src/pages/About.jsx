@@ -3,7 +3,6 @@ import Title from "../components/Title";
 import profile_back from "../assets/carassets/profile_back1.avif";
 import Footer from "../components/Footer";
 
-
 const About = () => {
   return (
     <div>

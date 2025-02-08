@@ -1,6 +1,6 @@
 import { React, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/carassets/logo.png"; // Replace with your actual image path
+import logo from "../assets/carassets/logo.png";
 import { FaDollarSign, FaCar, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -17,7 +17,6 @@ const Home = () => {
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        // Replace the URL with the actual backend URL
         const response = await axios.get(
           `${backendUrl}/api/cars/total-cars-model`
         );

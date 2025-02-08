@@ -4,9 +4,7 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { toast } from "react-toastify";
 const Payment = () => {
-  const { token, setToken, backendUrl, userId, username } = useContext(
-    UserContext
-  );
+  const { backendUrl, userId, username } = useContext(UserContext);
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +19,7 @@ const Payment = () => {
       const { data } = await axios.post(
         `${backendUrl}/payment-method/create-razorpay-order`,
         {
-          amount: totalPrice, // Amount in ₹ (converted to paise in backend)
+          amount: totalPrice,
         }
       );
 
@@ -41,7 +39,7 @@ const Payment = () => {
           order_id: data.orderId,
           handler: async function (response) {
             try {
-              // 1️⃣ Verify payment with backend
+              // Verify payment with backend
               const verifyResponse = await axios.post(
                 `${backendUrl}/payment-method/verify-razorpay`,
                 {
@@ -54,7 +52,7 @@ const Payment = () => {
               if (verifyResponse.data.success) {
                 console.log("Payment Verified Successfully!");
 
-                // 2️⃣ Create Booking Only if Payment is Verified
+                // 2Create Booking Only if Payment is Verified
                 const bookingResponse = await axios.post(
                   `${backendUrl}/api/bookings/create`,
                   {
@@ -71,8 +69,7 @@ const Payment = () => {
                   toast.success("Booking Confirmed");
                   // console.log("Booking Confirmed:", bookingResponse.data.booking._id);
 
-                  // also send the notification to the owner
-
+                  //  send the notification to the owner
                   try {
                     const response = await axios.post(
                       `${backendUrl}/api/notification/new-notification`,
@@ -295,6 +292,7 @@ const Payment = () => {
               </label>
               <input
                 type="text"
+                required
                 placeholder="John Doe"
                 className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -305,6 +303,7 @@ const Payment = () => {
               </label>
               <input
                 type="text"
+                required
                 placeholder="1234 5678 9012 3456"
                 className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -316,6 +315,7 @@ const Payment = () => {
                 </label>
                 <input
                   type="text"
+                  required
                   placeholder="MM/YY"
                   className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -326,6 +326,7 @@ const Payment = () => {
                 </label>
                 <input
                   type="password"
+                  required
                   placeholder="123"
                   className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />

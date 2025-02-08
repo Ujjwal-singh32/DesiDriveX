@@ -27,7 +27,7 @@ const Contact = () => {
     };
 
     try {
-      console.log(requestData)
+      console.log(requestData);
       const response = await axios.post(
         `${backendUrl}/api/admin/contact-us-send`,
         requestData
@@ -43,7 +43,9 @@ const Contact = () => {
         setphoneNumber("");
         setMessage("");
       } else {
-        setError(response.data.message || "Something went wrong. Please try again.");
+        setError(
+          response.data.message || "Something went wrong. Please try again."
+        );
       }
     } catch (err) {
       setError("Network error. Please try again later.");
@@ -66,7 +68,9 @@ const Contact = () => {
         {/* Contact Form */}
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Your Name</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Your Name
+            </label>
             <input
               type="text"
               value={name}
@@ -78,7 +82,9 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Your Email</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Your Email
+            </label>
             <input
               type="email"
               value={email}
@@ -90,7 +96,9 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Your Phone</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Your Phone
+            </label>
             <input
               type="number"
               value={phoneNumber}
@@ -102,7 +110,9 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Your Message</label>
+            <label className="block text-sm font-medium text-gray-700">
+              Your Message
+            </label>
             <textarea
               rows="5"
               value={message}
@@ -125,7 +135,9 @@ const Contact = () => {
         </form>
 
         {/* Success/Error Messages */}
-        {success && <p className="text-green-600 text-center mt-4">{success}</p>}
+        {success && (
+          <p className="text-green-600 text-center mt-4">{success}</p>
+        )}
         {error && <p className="text-red-600 text-center mt-4">{error}</p>}
 
         {/* Contact Information */}
