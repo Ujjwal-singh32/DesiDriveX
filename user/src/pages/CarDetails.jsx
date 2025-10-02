@@ -238,7 +238,7 @@ const CarDetails = () => {
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
             Select Route
           </h3>
-          <LoadScript googleMapsApiKey="AIzaSyDLk7Tp176K5My0x1kfF3xROZrSfkv7af0">
+          <LoadScript googleMapsApiKey="YOUR GOOGLE MAP API KEY">
             <GoogleMap
               mapContainerClassName="h-64 w-full rounded-lg"
               center={startLocation || { lat: 22.7733, lng: 86.1439 }} // Default location
